@@ -1,0 +1,35 @@
+ls
+
+Authors: Aiden Pape and Alex Oh
+
+This program emulates the ls program in linux, allowing for specifying files and directories. As well as options -a and -l
+
+Structure:
+
+main function:
+
+the main functions first reads in what options are passed by the user and sets two int variables correlating to each option to 0 or 1
+
+then main goes on to check the arguments passed to ls, if there are none. It calls ls_dir on the current directory
+
+If there are some, then it will loop through and read each file or directory (if there is only one direcrtory, it will not print the name but will if
+there are more than one arguments)
+
+While looping thru the arguments, main will check if the argument is a file or directory using stat and calls ls_dir or ls_file accordingly
+
+If the argument is a directory, you must check if it was passed relative to the cwd (ie not starting with a /), in which case you create the the path my starting
+concatenation, if it beginning with a /, then its the entire path so you just use that
+
+This path is passed to ls_dir
+
+In ls_file, if the -l option was passed, ls_file will call printlong to print all the information needed for -l, if not then ls_file will just print the file name
+on its own
+
+In ls_dir, -a, -l, and the string path to the directory are passed. 
+
+ls_dir has a if statement that allows the function to happen -l and non -l calls differently. If -l is passed, then it calls printlong for each file, using string concatenation to
+build the path to each file. If -l isnt passed then ls_dir itself prints the name for each file
+
+In printlong, the function is given a struct stat and uses it to print all the needed information about the file that the stat struct was created for
+
+
